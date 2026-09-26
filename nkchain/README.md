@@ -26,7 +26,7 @@ nkchain is a simple Python-based cryptocurrency settlement and double-entry ledg
 
 ## Requirements
 
-- Python 3.14+
+- Python 3.14
 - PostgreSQL
 
 ## Setup
