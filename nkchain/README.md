@@ -34,27 +34,6 @@ These are done:
 -Ledger service
 -Basic ledger validation
 
-current architecture:
-                         nkchain
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-           FastAPI                     PostgreSQL
-              │                             │
-       ┌──────┴──────┐              ┌───────┴────────┐
-       │             │              │                │
-     Users        Wallets         Users           Wallets
-                                    │
-                                    │
-                              Ledger Transactions
-                                    │
-                                    ↓
-                              Ledger Entries
-                                    │
-                              ┌─────┴─────┐
-                              ↓           ↓
-                           Debit       Credit
-
 
 As of 26/09/2026:
 This is the current architecture and status:
