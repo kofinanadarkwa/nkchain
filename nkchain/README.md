@@ -56,6 +56,4 @@ cp .env.example .env       # macOS/Linux
 python -m pytest
 ```
 
-## License
 
-_Add a license here (e.g. MIT) if you want others to know how they can use or contribute to this project._
