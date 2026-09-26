@@ -25,14 +25,14 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 
-### 2. Configure environment
-```
+ 2. Configure environment
+   ```
 Copy .env.example to .env and configure your local PostgreSQL database URL: cp .env.example .env
 
 ### 3. Create Test Database
-```
+   ```
 Ensure PostgreSQL is running locally and create a dedicated database for testing: CREATE DATABASE chainledger_test_db;
 
-4. Run Automated Tests
-   ```
+###4. Run Automated Tests
+```
 Execute the full integration test suite to verify double-entry rules, balance checks, and row locking: python -m pytest
