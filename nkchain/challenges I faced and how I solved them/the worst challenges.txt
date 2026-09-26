@@ -1,3 +1,3 @@
 created on 23/09/2026
 
-1. challenge 6
+1. challenge 6 six was the worst challenge because it was cause by just a single spelling mistake that was easy to miss and yet was the exact reason why my code wasn't running properly.
