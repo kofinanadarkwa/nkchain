@@ -19,7 +19,7 @@
 
 ## Quick Start
 
-###1. Install Dependencies
+### 1. Install Dependencies
 
 python -m venv .venv
 .venv\Scripts\activate
@@ -33,6 +33,6 @@ Copy .env.example to .env and configure your local PostgreSQL database URL: cp .
    
 Ensure PostgreSQL is running locally and create a dedicated database for testing: CREATE DATABASE chainledger_test_db;
 
-###4. Run Automated Tests
+### 4. Run Automated Tests
 
 Execute the full integration test suite to verify double-entry rules, balance checks, and row locking: python -m pytest
