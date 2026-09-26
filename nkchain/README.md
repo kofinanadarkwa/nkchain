@@ -1,74 +1,61 @@
 # nkchain
 
-nkchain is a simple python based crytocurrency settlement and double entry ledger system.
+nkchain is a simple Python-based cryptocurrency settlement and double-entry ledger system.
 
-## Current status
+## Current Status
 
-As of 19/09/2026:
-Part 1 - Foundation of Project:
+**As of 26/09/2026** — Part 1: Double-Entry Core and Settlement Engine (completed)
 
-These are done:
+- **FastAPI Application and Endpoints**: API routes for managing users, wallets, and processing transfers.
+  
+- **Double-Entry Ledger Engine**: Every transaction, without exception, creates matching debits and credits
+  
+- **The Ledger as Source of Truth**: Wallet balances are calculated dynamically from immutable ledger entries.
+  
+- **Financial Integrity Safeguards**:
+  
+  - Pre-transfer balance checks prevent overdraws.
+    
+  - Concurrency protection via pessimistic PostgreSQL row locks (`with_for_update` in `app/services/ledger_service.py`).
+    
+  - Strict idempotent transaction execution via unique reference tracking.
+    
+  - Lifecycle state machine with four states: `COMPLETED`, `PENDING`, `FAILED`, `REVERSED`.
+    
+- **Test Suite**: Automated tests using `pytest`, covering double-entry balance equality, rollback guarantees, insufficient funds, idempotency, and API integration.
 
--FastApi application
--health check endpoint
--python virtual environment
--dependency management
+## Requirements
 
+- Python 3.14+
+- PostgreSQL
 
-As of 24/09/2026:
-These are done:
+## Setup
 
--Project Foundation
--PostgreSQL database
--Database models
--wallet model
--Decimal-based financial amounts
--Pydantic API schemas
--User API
--Wallet API
--FastAPI rounting
--Database tables
--Ledger transaction model
--Ledger entry model
--Double-entry accounting concept
--Ledger service
--Basic ledger validation
+```bash
+# clone the repo
+git clone https://github.com/<your-username>/nkchain.git
+cd nkchain
 
+# create and activate a virtual environment
+python -m venv venv
+venv\Scripts\activate      # Windows (PowerShell)
+source venv/bin/activate   # macOS/Linux
 
-As of 26/09/2026:
-This is the current architecture and status:
+# install dependencies
+pip install -r requirements.txt
 
-Part 1 - Double-Entry Core and Settlement Engine(completed):
+# configure environment variables
+copy .env.example .env     # Windows
+cp .env.example .env       # macOS/Linux
+# then edit .env with your PostgreSQL connection details
+```
 
--FastAPI Application and Endpoint: 
-      The API routes for managing users, wallets and for processing transfers.
+## Running Tests
 
--Double-Entry Ledger Engine: 
-      Every single transaction without exception always creates matching debits and credits.
+```bash
+python -m pytest
+```
 
--The Ledger as the source of truth: 
-      Wallet balances are calculated dynamically from immutable ledger entries.
+## License
 
--Financial Integrity Safeguards:
-      -Pre-transfer balance checks prevent overdraws.
-
-      -Concurrency protection is ensured through pessimistic PostgreSQL row locks( this is the "with_for_update" function in the "app/services/ledger_service.py" file).
-
-      -Strict idempotent transaction execution is ensured via unique reference tracing
-
-      -Lifecycle state machine( this is just the four states of "COMPLETED", "PENDING", "FAILED", and "REVERSED").
-
--Test Suite:
-      These are automated tests using "pytest" covering double-entry balance equality, rollback guarantees, insufficient funds, idempotency and API integration.
-
-##setup and running
-
-#the environment:
-      -python 3.14+
-      -postgresql
-      
-
-#for running tests and file and folder creation and navigation:
-      powershell and "python -m pytest" run within powershell
-
-
+_Add a license here (e.g. MIT) if you want others to know how they can use or contribute to this project._
