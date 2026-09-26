@@ -1,0 +1,13 @@
+created on 19/09/2026:
+
+I kept on getting a ModuleNotFoundError while trying to run the command "uvicorn app.main:app --reload" on powershell.
+
+The file path that I was in while doing this was "PS C:\nkchain>".
+
+it seems that powershell is highly context dependent. For example, if you try to run a comment such as "uvicorn app.main:app" while
+from your file path, you are already in the "app" folder, you can get a ModuleNotFoundError.
+
+I fixed this problem by simply changing my directory from PS C:\nkchain> to PS C:\nkchain\app> and then running "uvicorn main:app --reload"
+instead of "uvicorn app.main:app --reload" like before.
+
+After that, I didn't get the ModuleNotFoundError anymore.

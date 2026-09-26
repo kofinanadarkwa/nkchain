@@ -1,0 +1,36 @@
+created on 26/09/2026:
+at some point when I run "python -m pytest" on PowerShell, this is the error that I got:
+"""
+
+E       sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "transaction_id" of relation "ledger_entries" violates not-null constraint
+E       DETAIL:  Failing row contains (1, null, 1, USDT, 1000.00000000, 0.00000000).
+E
+E       [SQL: INSERT INTO ledger_entries (transaction_id, wallet_id, asset, debit, credit) VALUES (%(transaction_id)s, %(wallet_id)s, %(asset)s, %(debit)s, %(credit)s) RETURNING ledger_entries.id]
+E       [parameters: {'transaction_id': None, 'wallet_id': 1, 'asset': 'USDT', 'debit': Decimal('1000'), 'credit': Decimal('0')}]
+E       (Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:952: IntegrityError
+======================================= short test summary info =======================================
+FAILED tests/test_ledger.py::test_fund_wallet - sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) null value in column "transaction...
+
+"""
+
+The reason why I got this error was because in the "db.flush" line of the "def fund_wallet" function of the "app\services\ledger_service.py" file, it was supposed to be "db.flush()" and not simply "db.flush".
+
+Because db.flush was missing parenthesis, python treated it as a reference to the method itself instead of calling and executing it. This resulted in PostgreSQL never assigning an "id" to "transaction". this left "transaction.id" as None when "funding_entry" was created.
+
+After making this simply change of adding parenthesis and running "python -m pytest" again, this was the output from powershell:
+
+"""
+========================================= test session starts =========================================
+platform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: C:\nkchain
+plugins: anyio-4.15.1
+collected 6 items
+
+tests\test_ledger.py ......                                                                      [100%]
+
+========================================== 6 passed in 0.63s ==========================================
+"""
+
+

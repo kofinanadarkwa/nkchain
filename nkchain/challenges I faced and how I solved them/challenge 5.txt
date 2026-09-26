@@ -1,0 +1,5 @@
+created on 22/09/2026:
+
+I kept on getting import errors and modulenotfound errors regularly on powershell while using uvicorn on my project. it seems that it is best to always run uvicorn from the root directory in powershell and to always include the full file path when importing self-made modules and packages in python files.
+
+Another reason to always include the full file path and not part of it when importing files is that when the project grows, several different files might have similar names and similar locations. This avoids such confusion.

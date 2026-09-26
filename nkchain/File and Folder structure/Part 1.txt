@@ -1,0 +1,53 @@
+created on 18/09/2026:
+
+nkchain/
+│
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   │
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── users.py
+│   │   ├── wallets.py
+│   │   └── transfers.py
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── wallet.py
+│   │   ├── account.py
+│   │   ├── ledger_transaction.py
+│   │   └── ledger_entry.py
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── wallet.py
+│   │   └── transfer.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── wallet_service.py
+│   │   ├── ledger_service.py
+│   │   └── transfer_service.py
+│   │
+│   └── database/
+│       ├── __init__.py
+│       ├── connection.py
+│       └── migrations/
+│
+├── tests/
+│   ├── test_users.py
+│   ├── test_wallets.py
+│   ├── test_ledger.py
+│   └── test_transfers.py
+│
+├── .env
+├── .gitignore
+├── requirements.txt
+├── docker-compose.yml
+└── README.md
+
+
+Part 1 was finished on 26/09/2026

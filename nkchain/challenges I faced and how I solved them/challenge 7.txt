@@ -1,0 +1,7 @@
+created on 23/09/2026:
+
+After creating app/models/ledger/transaction.py and the app/models/ledger.entry.py files,
+which were the LedgerTransaction and the LedgerEntry models respectively, I expected to see ledger_transactions and ledger_entries rows in pgAdmin 4 alongside my existing users and wallets rows.
+
+But for some time, I couldn't. I simply refreshed the "Tables" tab in pgadmin 4 and I could finally see them.
+

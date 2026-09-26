@@ -1,0 +1,23 @@
+created on 21/09/2026
+
+1. Every financial transaction must balance: total debits = total credits.
+
+2. Every financial transaction must have one or more debit entries.
+
+3. Every financial transaction must have one or more credit entries.
+
+4. Either the entire transaction succeeds or it fails atomically. All or NOTHING. No in-between states must be tolerated.
+
+5. The ledger must always be the source of all truth. Not wallet.balance.
+
+6. Only one accounting convention will be used so as to make things simple.
+
+7. Only a relational database can be used and not any non relational database at all costs. This is because of the monetary nature of the 
+project.
+
+8. All input should always be validated. Only authorized information should be able to be accessed.
+
+9. The API should not contain the accounting rules. The ledger service should.
+
+10/ There should always be a copy of all transactions in the database.
+

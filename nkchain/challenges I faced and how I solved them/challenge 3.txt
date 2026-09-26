@@ -1,0 +1,14 @@
+this was created on 19/09/2026
+
+I was trying to see if the .env file would appear as an untracked file on powershell.
+
+So I run the command "PS C:\nkchain> git status" on powershell but I kept on getting "fatal: not a git repository (or any of the parent directories): .git" as an error.
+
+I eventually found out through a google search that you can only view untracked files in your directory if you initialize git first in the command line.
+
+so I run "git init" at PS C:\nkchain> and I got "Initialized empty Git repository in C:/nkchain/.git/" as my result.
+
+The problem was finally fixed because I didn't see the .env file in the list of untracked files that appeared.
+
+
+

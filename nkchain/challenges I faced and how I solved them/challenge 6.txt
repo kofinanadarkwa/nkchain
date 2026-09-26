@@ -1,0 +1,41 @@
+created on 23/09/2026:
+I had an error. It was as follows:
+"""
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'ledger_entries.wallet_id' could not find table 'wallet' with which to generate a foreign key to target column 'id'
+"""
+
+The reason why I got this error was so subtle yet was the exact reason why my FastApi server had such an error. This was so baffling when I found it out. It was just because of a single spelling mistake.
+
+In the app/models/ledger/entry.py file in the project, in the LedgerEntry class, there is a line which is supposed to be:
+
+"""
+ForeignKey("wallets.id"),
+"""
+
+It exists under the wallet_id block that is within the LedgerEntry class.
+
+My mistake was that I made that line:
+
+"""
+ForeignKey("wallet.id"),
+"""
+
+The difference between the two lines of code is just an "s" in the word "wallet". This is a small error yet it is able to cause a lot of confusion if allowed to.
+
+Even a single tiny spelling mistake can be the exact reason why your code or server doesn't run properly.
+
+These can be more problematic than the easier to spot errors.
+
+So as soon as I fixed this, my fastapi server that I was running in powershell was working properly.
+
+This is how it went:
+
+
+"""
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'ledger_entries.wallet_id' could not find table 'wallet' with which to generate a foreign key to target column 'id'
+←[33mWARNING←[0m:  StatReload detected changes in 'app\models\ledger\entry.py'. Reloading...
+ ←[32mINFO←[0m:     Started server process [←[36m26132←[0m]
+←[32mINFO←[0m:     Waiting for application startup.
+←[32mINFO←[0m:     Application startup complete.
+
+"""

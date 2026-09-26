@@ -1,0 +1,27 @@
+This document was created on 19/09/2026.
+
+on line four of the main.py file which is in the "app" subfolder, I initially wrote
+"from app.database.connection import engine"
+
+The "app.database.connection" was underlined in yellow by vscode. I was confused as to why
+it wasn't working because the "engine class/object" didn't seem to be working in the code either.
+
+This is the error message that I got when I ran the file:
+
+"
+
+Traceback (most recent call last):
+  File "c:\nkchain\app\main.py", line 4, in <module>
+    from app.database.connection import engine # to test the connection? I don't know why it seems like the import didn't work properly.
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'app'
+
+"
+
+but with a small tweak, I was able to fix this error.
+
+This error happened in the first place because the "main.py" file was already located in the"app" folder to begin with. so the "app" in "app.database.connection" of line four wasn't even necessary. 
+
+The error wouldn't have occurred if the current file that I was trying to import to wasn't already in the first folder in "app.database.connection" OR if I just wrote "from database.connection import engine" which doesn't include "app" in the line.
+
+so I fixed this error by simply removing the word "app" from line four.

@@ -1,0 +1,3 @@
+created on 24/09/2026:
+
+It seems that my earlier "fix" for challenge one was dead wrong or at least incomplete. I think that the actual reason that it happened was because I hadn't yet initialized the "app" folder by creating a __init__.py file in it to make it importable to other files.

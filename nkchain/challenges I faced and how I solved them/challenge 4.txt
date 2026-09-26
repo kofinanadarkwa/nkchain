@@ -1,0 +1,31 @@
+created on 20/09/2026.
+
+in powershell, I kept on getting a ModuleNotFoundError when I run uvicorn main:app --reload while being on C:\nkchain\app>.
+
+It seems that the cause of this error is me writing:
+"
+from user import User
+from wallet import Wallet
+"
+
+in the __init__.py file of the "models" directory.
+
+I fixed this error by including a "models." before each file.
+
+So I wrote:
+"
+from models.user import User
+from models.wallet import Wallet
+"
+
+in the __init__.py file of the models directory. and while I did this, the unicorn command that I run on powershell automatically detected that change and outputted:
+
+"
+←[33mWARNING←[0m:  StatReload detected changes in 'models\__init__.py'. Reloading...
+ ←[32mINFO←[0m:     Started server process [←[36m28116←[0m]
+←[32mINFO←[0m:     Waiting for application startup.
+←[32mINFO←[0m:     Application startup complete.
+
+"
+
+So that is how I knew that the problem was fixed.
