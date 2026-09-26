@@ -33,6 +33,7 @@ def get_db():
 
     try:
         yield db #I used yield because "return" would make the code below this line unable to run. And yield is more suited in case errors happen.
+        #also, return destroys the function's memory and exists entirely but yield pauses its execution, saves its current state and passes a value back to the caller
 
     finally:
         db.close()# I decided to not print an 'except' after the 'try' because 'finally' already handles what I want to do.
