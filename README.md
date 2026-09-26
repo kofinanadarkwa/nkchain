@@ -31,7 +31,7 @@ Copy .env.example to .env and configure your local PostgreSQL database URL: cp .
 
 ### 3. Create Test Database
    
-Ensure PostgreSQL is running locally and create a dedicated database for testing: CREATE DATABASE chainledger_test_db;
+Ensure PostgreSQL is running locally and create a dedicated database for testing: CREATE DATABASE nkchain_test_db;
 
 ### 4. Run Automated Tests
 
