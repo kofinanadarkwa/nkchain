@@ -1,95 +1,35 @@
-created on 21/09/2026:
+## System Architecture & Transaction Flow
 
-I built this project in three parts/phases.
+### Ledger Mechanics & State Engine
+ChainLedger enforces transactional integrity using pessimistic row locks and an explicit state machine:
 
-The mvp is the most difficult part of the three parts of the project to build.
+- **Concurrency Protection**: During execution, PostgreSQL acquires an exclusive row lock on the sender's wallet record via `.with_for_update()` in `app/services/ledger_service.py` to prevent microsecond double-spend race conditions.
 
-Part one was just the mvp and was built in nine stages.
+- **Dual Database Strategy**: Features an isolated production database alongside a dedicated testing database to ensure full test suite isolation without side effects.
 
-Stage four is the most important stage of part one and arguably maybe the most important aspect of all three parts of the project. 
+- **Transaction Lifecycle State Machine**:
 
-This was the stage where nkchain stopped being a basic wallet CRUD app and it started becoming a real financial ledger system.
+  - `PENDING`: Transaction initiated, awaiting on-chain confirmation or internal validation.
 
-nkchain uses two databases. the first one is the main database for the normal application. the second database is simply a test database for testing the ledger without actually modifying anything.
+  - `COMPLETED`: Matching debit and credit entries posted atomically.
 
+  - `FAILED`: Aborted due to insufficient funds, lock timeouts, or validation errors.
 
-Conceptually:
-Transfer Service
-       │
-       │ BEGIN
-       ↓
- Ledger Service
-       │
-       ↓
- Wallet Service
-       │
-       ↓
- Audit Service
-       │
-       │
-       ↓
-     COMMIT
+  - `REVERSED`: Explicitly refunded or rolled back without modifying historical entries.
 
-OR:
-Transfer Service
-       │
-       ↓
-     ERROR
-       │
-       ↓
-    ROLLBACK
+### API Processing Pipeline
 
-
-
-
-This is the flow of the transfer API:
-
-HTTP request
-     ↓
-Pydantic validation
-     ↓
-Transfer API
-     ↓
-Ledger service
-     ↓
-Double-entry entries
-     ↓
-Database transaction
-     ↓
-Response
-
-
-
-26/09/2026:
-For the duration of each transaction, an exclusive lock on the sender's wallet record is held by PostgreSQL.
-
-The ".with_for_updates()" function in the "app/services/ledger_service.py" file is what makes this happen. 
-
-The whole point of this is to protect the system against concurrent double spend attempts that can happen at the same exact microsecond.
-
-
-I've also added a Transaction State Machine so that the transactions don't continue instantly defaulting to COMPLETED like they used to do. 
-
-Hopefully, this allows the transactions to progress through explicit lifecycle states to handle asynchronous processing, confirmations and failure recoveries safely.
-
-There are four transaction statuses that I created. they can be more than four, but for now, I'll stick with four. They are: PENDING, COMPLETED, FAILED and REVERSED.
-
-These are what they mean:
-
-PENDING: Transaction has been initiated, waiting for validation or execution.   
-
-COMPLETED: Debit entries and credit entries have been successfully posted.   
-
-FAILED: Transaction has been aborted due to validation errors or maybe system issues.   
-
-REVERSED: Transaction has been rolled back or maybe it has been refunded.
-
-
-Yes, in this system, transactions should be able to be refunded.
-
-On 26/09/2026, I finally finished part 1. Now what is left to do before I start with parts 2 and 3 is to publish the mvp to GitHub and then change my LinkedIn profile to match software engineering.
-
-
-
-
-
+```text
+HTTP Request
+    ↓
+Pydantic Schema Validation
+    ↓
+Transfer API Endpoint
+    ↓
+Ledger Service (Acquires pessimistic locks)
+    ↓
+Atomic Double-Entry Construction (Debits == Credits)
+    ↓
+Database Transaction Commit
+    ↓
+HTTP Response
