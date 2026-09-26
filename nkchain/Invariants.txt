@@ -19,5 +19,5 @@ project.
 
 9. The API should not contain the accounting rules. The ledger service should.
 
-10/ There should always be a copy of all transactions in the database.
+10. There should always be a copy of all transactions in the database.
 
