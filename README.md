@@ -1,73 +1,35 @@
 # nkchain
 
-nkchain is a simple python based crytocurrency settlement and double entry ledger system.
+nkchain is a Python-based cryptocurrency settlement engine built with FastAPI and PostgreSQL. It uses double-entry accounting to ensure every transaction is accurate, balance-checked, and protected against double-spending.
 
-## Current status
+## What It Does
 
-As of 19/09/2026:
-Part 1 - Foundation of Project:
+-Double-Entry Ledger: 
+      Every transaction creates matching debit and credit entries. Wallet balances are calculated dynamically from the ledger.
+  
+-Double-Spend Protection:
+        Uses PostgreSQL row locking (`with_for_update`) to prevent two transactions from spending the same funds at the exact same microsecond.
+  
+-Idempotency: 
+      Ensures duplicate network requests or retries won't process the same payment twice.
+  
+-Transaction States: 
+      Tracks payment lifecycles clearly using `PENDING`, `COMPLETED`, `FAILED`, and `REVERSED` states.
+  
+-Automated Testing:
+        Fully tested with `pytest` covering balance checks, rollbacks, and API endpoints.
 
-These are done:
+## Tech Stack
 
--FastApi application
--health check endpoint
--python virtual environment
--dependency management
+Language: Python 3.14+
+Framework: FastAPI, Pydantic
+Database: PostgreSQL, SQLAlchemy
+Testing: Pytest, HTTPX
 
+## Quick Start
 
-As of 24/09/2026:
-These are done:
+### Install Dependencies
 
--Project Foundation
--PostgreSQL database
--Database models
--wallet model
--Decimal-based financial amounts
--Pydantic API schemas
--User API
--Wallet API
--FastAPI rounting
--Database tables
--Ledger transaction model
--Ledger entry model
--Double-entry accounting concept
--Ledger service
--Basic ledger validation
-
-
-As of 26/09/2026:
-This is the current architecture and status:
-
-Part 1 - Double-Entry Core and Settlement Engine(completed):
-
--FastAPI Application and Endpoint: 
-      The API routes for managing users, wallets and for processing transfers.
-
--Double-Entry Ledger Engine: 
-      Every single transaction without exception always creates matching debits and credits.
-
--The Ledger as the source of truth: 
-      Wallet balances are calculated dynamically from immutable ledger entries.
-
--Financial Integrity Safeguards:
-      -Pre-transfer balance checks prevent overdraws.
-
-      -Concurrency protection is ensured through pessimistic PostgreSQL row locks( this is the "with_for_update" function in the "app/services/ledger_service.py" file).
-
-      -Strict idempotent transaction execution is ensured via unique reference tracing
-
-      -Lifecycle state machine( this is just the four states of "COMPLETED", "PENDING", "FAILED", and "REVERSED").
-
--Test Suite:
-      These are automated tests using "pytest" covering double-entry balance equality, rollback guarantees, insufficient funds, idempotency and API integration.
-
-##setup and running
-
-#the environment:
-      -python 3.14+
-      -postgresql
-      
-
-#for running tests and file and folder creation and navigation:
-      powershell and "python -m pytest" run within powershell
-
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
