@@ -1,0 +1,8 @@
+created on 19/09/2026
+
+PostgreSQL Configuration:
+- Version: 18
+- Database Port: 5432
+- Default Superuser: postgres
+
+
