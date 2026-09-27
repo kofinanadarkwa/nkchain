@@ -36,7 +36,9 @@ git clone https://github.com/<kofinanadarkwa>/nkchain.git
 cd nkchain
 
 # create and activate a virtual environment
-python -m venv venv
+python -m venv .venv # Windows
+python3 -m venv .venv # macOS and linux
+
 venv\Scripts\activate      # Windows (PowerShell)
 source venv/bin/activate   # macOS/Linux
 
