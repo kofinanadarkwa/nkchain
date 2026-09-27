@@ -33,11 +33,13 @@ nkchain is a simple Python-based cryptocurrency settlement and double-entry ledg
 
 ```bash
 # clone the repo
-git clone https://github.com/<your-username>/nkchain.git
+git clone https://github.com/<kofinanadarkwa>/nkchain.git
 cd nkchain
 
 # create and activate a virtual environment
-python -m venv venv
+python -m venv .venv # Windows
+python3 -m venv .venv # macOS and linux
+
 venv\Scripts\activate      # Windows (PowerShell)
 source venv/bin/activate   # macOS/Linux
 
