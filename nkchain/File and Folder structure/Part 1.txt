@@ -51,3 +51,8 @@ nkchain/
 
 
 Part 1 was finished on 26/09/2026
+
+I decided to not add a migrations/ folder yet because currently, nkchain doesn't need one.
+nkchain also runs properly without docker-compose.yml. It is a deployment and development convenience file that tells docker how to run several services together.
+
+It is infrastructure tooling that becomes more valuable as the project grows.
