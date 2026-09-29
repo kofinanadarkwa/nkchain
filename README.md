@@ -1,6 +1,6 @@
 # nkchain
 
-nkchain is a simple Python-based cryptocurrency settlement and double-entry ledger system.
+nkchain is a Python-based cryptocurrency settlement and double-entry ledger system.
 
 ## Current Status
 
