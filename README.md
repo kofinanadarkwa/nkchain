@@ -2,6 +2,8 @@
 
 nkchain is a Python-based cryptocurrency settlement and double-entry ledger system.
 
+It is going to be made up of three parts in total.
+
 ## Current Status
 
 **As of 26/09/2026** — Part 1: Double-Entry Core and Settlement Engine (completed)
