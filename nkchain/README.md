@@ -34,6 +34,7 @@ NKChain separates API handling, financial business logic, and persistent data st
 - PostgreSQL
 - SQLAlchemy
 - Pytest
+- PgAdmin4
 
 ## Requirements
 
