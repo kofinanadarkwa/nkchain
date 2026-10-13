@@ -40,6 +40,7 @@ NKChain separates API handling, financial business logic, and persistent data st
 
 - Python 3.14
 - PostgreSQL
+- PgAdmin4
 
 ## Setup
 
