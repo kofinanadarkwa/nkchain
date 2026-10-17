@@ -34,15 +34,17 @@ It is going to be made up of three parts in total.
 
 ```bash
 # clone the repo
-git clone https://github.com/<kofinanadarkwa>/nkchain.git
+git clone https://github.com/kofinanadarkwa/nkchain.git
 cd nkchain
 
 # create and activate a virtual environment
-python -m venv .venv # Windows
-python3 -m venv .venv # macOS and linux
+Windows:
+python -m venv .venv
+venv\Scripts\activate
 
-venv\Scripts\activate      # Windows (PowerShell)
-source venv/bin/activate   # macOS/Linux
+macOS/Linux:
+python3 -m venv .venv 
+source venv/bin/activate   
 
 # install dependencies
 pip install -r requirements.txt
@@ -51,6 +53,7 @@ pip install -r requirements.txt
 copy .env.example .env     # Windows
 cp .env.example .env       # macOS/Linux
 # then edit .env with your PostgreSQL connection details
+Complete any required database initialization or migrations before running the application.
 ```
 
 ## Running Tests
