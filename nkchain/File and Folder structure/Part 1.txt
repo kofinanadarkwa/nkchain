@@ -35,7 +35,7 @@ nkchain/
 │   └── database/
 │       ├── __init__.py
 │       ├── connection.py
-│       └── migrations/
+│       
 │
 ├── tests/
 │   ├── test_users.py
@@ -43,7 +43,7 @@ nkchain/
 │   ├── test_ledger.py
 │   └── test_transfers.py
 │
-├── .env
+|
 ├── .gitignore
 ├── requirements.txt
 ├── docker-compose.yml
