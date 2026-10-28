@@ -53,6 +53,7 @@ pip install -r requirements.txt
 copy .env.example .env     # Windows
 cp .env.example .env       # macOS/Linux
 # then edit .env with your PostgreSQL connection details
+
 Complete any required database initialization or migrations before running the application.
 ```
 
